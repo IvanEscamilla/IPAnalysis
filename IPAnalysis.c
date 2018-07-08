@@ -16,9 +16,9 @@ typedef struct {
 
 // IP header addres
 typedef struct __attribute__((packed, aligned(1)))  {
-	uint8_t ip_tos;       		// Type of service 1 Byte
-	uint8_t ip_ihl:4;			// IHL 4bits 
-	uint8_t ip_version:4; 		// IP Version 4bits
+    uint8_t ip_tos;       		// Type of service 1 Byte
+    uint8_t ip_ihl:4;			// IHL 4bits 
+    uint8_t ip_version:4; 		// IP Version 4bits
     uint16_t ip_lenght;  		// Total lenght 2 Byte
     uint16_t ip_id;   			// Identification 2 Byte
     uint16_t ip_offset;  		// Flags and Fragmentation Offset 2 Byte
@@ -36,6 +36,7 @@ typedef struct __attribute__((packed, aligned(1)))  {
 
 bool isInSameNetwork = false;
 uint8_t* headerPointer;
+
 //*********************************************************************************
 // Function declaration
 //*********************************************************************************
@@ -54,45 +55,45 @@ int main(void) {
 
 	ip_header theHeader;
 	in_addr ipAddress, subnetMask;
-	
+
 	/*header  example 1
 		45 00 00 6c
-        92 cc 00 00
-        38 06 e4 04
-        92 95 ba 14 <- source ip
-        a9 7c 15 95 <- destination ip
+		92 cc 00 00
+		38 06 e4 04
+		92 95 ba 14 <- source ip
+		a9 7c 15 95 <- destination ip
 
-        0x4 	<- ip version
-        0x5 	<- IHL
-        0x00	<- type of service
-        0x006c	<- total length
-        0x92cc	<- id
-        0x0000	<- Flags and fragmentation offset
-        0x38	<- time to live
-        0x06 	<- protocol
-        0xe404	<- checksum
-        0x9295ba14 <- source ip 146.149.186.20
-        0xa97c1595 <- destination ip 169.124.21.149
+		0x4 	<- ip version
+		0x5 	<- IHL
+		0x00	<- type of service
+		0x006c	<- total length
+		0x92cc	<- id
+		0x0000	<- Flags and fragmentation offset
+		0x38	<- time to live
+		0x06 	<- protocol
+		0xe404	<- checksum
+		0x9295ba14 <- source ip 146.149.186.20
+		0xa97c1595 <- destination ip 169.124.21.149
 	*/
 	theHeader.ip_version = (uint8_t)0x04;
 	theHeader.ip_ihl = (uint8_t)0x05;
-    theHeader.ip_tos = (uint8_t)0x00;
-    theHeader.ip_lenght = (uint16_t)0x006c;
-    theHeader.ip_id = (uint16_t)0x92cc;
-    theHeader.ip_offset = (uint16_t)0x0000;
-    theHeader.ip_ttl = (uint8_t)0x38;
-    theHeader.ip_p = (uint8_t)0x06;
-    theHeader.ip_chksum = (uint16_t)0xe404;
-    theHeader.ip_src = (uint32_t)0x9295ba14;
+	theHeader.ip_tos = (uint8_t)0x00;
+	theHeader.ip_lenght = (uint16_t)0x006c;
+	theHeader.ip_id = (uint16_t)0x92cc;
+	theHeader.ip_offset = (uint16_t)0x0000;
+	theHeader.ip_ttl = (uint8_t)0x38;
+	theHeader.ip_p = (uint8_t)0x06;
+	theHeader.ip_chksum = (uint16_t)0xe404;
+	theHeader.ip_src = (uint32_t)0x9295ba14;
 	theHeader.ip_dst = (uint32_t)0xa97c1595;
 
 	headerPointer = (uint8_t*)(&theHeader);
 
 	ipAddress.addr = address_to_inet("192.168.100.1");
 	subnetMask.addr = address_to_inet("255.255.255.0");
-	
+
 	isInSameNetwork = is_local_address(headerPointer, ipAddress.addr, subnetMask.addr);
-	
+
 	if (isInSameNetwork){
 		printf("Example 1 result: is in same network\n");
 	} else {
@@ -109,36 +110,36 @@ int main(void) {
 		0a d3 37 02
 		0a d3 37 09
 
-        0x4 	<- ip version
-        0x5 	<- IHL
-        0x00	<- type of service
-        0x0054	<- total length
-        0xf436	<- id
-        0x0000	<- Flags and fragmentation offset
-        0x40	<- time to live
-        0x01 	<- protocol
-        0x02c2	<- checksum
-        0x0ad33702 <- source ip 10.211.55.2
-        0x0ad33709 <- destination ip 10.211.55.9
+		0x4 	<- ip version
+		0x5 	<- IHL
+		0x00	<- type of service
+		0x0054	<- total length
+		0xf436	<- id
+		0x0000	<- Flags and fragmentation offset
+		0x40	<- time to live
+		0x01 	<- protocol
+		0x02c2	<- checksum
+		0x0ad33702 <- source ip 10.211.55.2
+		0x0ad33709 <- destination ip 10.211.55.9
 	*/
 
 	theHeader.ip_version = (uint8_t)0x04;
 	theHeader.ip_ihl = (uint8_t)0x05;
-    theHeader.ip_tos = (uint8_t)0x00;
-    theHeader.ip_lenght = (uint16_t)0x0054;
-    theHeader.ip_id = (uint16_t)0xf436;
-    theHeader.ip_offset = (uint16_t)0x0000;
-    theHeader.ip_ttl = (uint8_t)0x40;
-    theHeader.ip_p = (uint8_t)0x01;
-    theHeader.ip_chksum = (uint16_t)0x02c2;
-    theHeader.ip_src = (uint32_t)0x0ad33702;
+	theHeader.ip_tos = (uint8_t)0x00;
+	theHeader.ip_lenght = (uint16_t)0x0054;
+	theHeader.ip_id = (uint16_t)0xf436;
+	theHeader.ip_offset = (uint16_t)0x0000;
+	theHeader.ip_ttl = (uint8_t)0x40;
+	theHeader.ip_p = (uint8_t)0x01;
+	theHeader.ip_chksum = (uint16_t)0x02c2;
+	theHeader.ip_src = (uint32_t)0x0ad33702;
 	theHeader.ip_dst = (uint32_t)0x0ad33709;
 
 	ipAddress.addr = address_to_inet("192.168.0.3");
 	subnetMask.addr = address_to_inet("255.255.255.0");
-	
+
 	isInSameNetwork = is_local_address(headerPointer, ipAddress.addr, subnetMask.addr);
-	
+
 	if (isInSameNetwork){
 		printf("Example 2 result: is in same network\n");
 	} else {
@@ -146,46 +147,45 @@ int main(void) {
 	}
 
 	/*header  example 3
-		45 00 00 54 
-		
+
 		f4:5c:89:bd:06:1d > 2c:0e:3d:4e:f7:f0, IPv4, length 98: 192.168.0.3 > 192.168.0.10: ICMP echo reply, id 3, seq 1, length 64
-		
+
 		45 00 00 54 
 		00 00 40 00 
 		40 01 b9 4b 
 		c0 a8 00 03
 		c0 a8 00 0a
 
-        0x4 	<- ip version
-        0x5 	<- IHL
-        0x00	<- type of service
-        0x0054	<- total length
-        0x0000	<- id
-        0x4000	<- Flags and fragmentation offset
-        0x40	<- time to live
-        0x01 	<- protocol
-        0xb94b	<- checksum
-        0xc0a80003 <- source ip 192.168.0.3
-        0xc0a8000a <- destination ip 192.168.0.10
+		0x4 	<- ip version
+		0x5 	<- IHL
+		0x00	<- type of service
+		0x0054	<- total length
+		0x0000	<- id
+		0x4000	<- Flags and fragmentation offset
+		0x40	<- time to live
+		0x01 	<- protocol
+		0xb94b	<- checksum
+		0xc0a80003 <- source ip 192.168.0.3
+		0xc0a8000a <- destination ip 192.168.0.10
 	*/
 
 	theHeader.ip_version = (uint8_t)0x04;
 	theHeader.ip_ihl = (uint8_t)0x05;
-    theHeader.ip_tos = (uint8_t)0x00;
-    theHeader.ip_lenght = (uint16_t)0x0054;
-    theHeader.ip_id = (uint16_t)0x0000;
-    theHeader.ip_offset = (uint16_t)0x4000;
-    theHeader.ip_ttl = (uint8_t)0x40;
-    theHeader.ip_p = (uint8_t)0x01;
-    theHeader.ip_chksum = (uint16_t)0xb94b;
-    theHeader.ip_src = (uint32_t)0xc0a80003;
+	theHeader.ip_tos = (uint8_t)0x00;
+	theHeader.ip_lenght = (uint16_t)0x0054;
+	theHeader.ip_id = (uint16_t)0x0000;
+	theHeader.ip_offset = (uint16_t)0x4000;
+	theHeader.ip_ttl = (uint8_t)0x40;
+	theHeader.ip_p = (uint8_t)0x01;
+	theHeader.ip_chksum = (uint16_t)0xb94b;
+	theHeader.ip_src = (uint32_t)0xc0a80003;
 	theHeader.ip_dst = (uint32_t)0xc0a8000a;
 
 	ipAddress.addr = address_to_inet("192.168.0.10");
 	subnetMask.addr = address_to_inet("255.255.255.0");
-	
+
 	isInSameNetwork = is_local_address(headerPointer, ipAddress.addr, subnetMask.addr);
-	
+
 	if (isInSameNetwork){
 		printf("Example 3 result: is in same network\n");
 	} else {
@@ -280,10 +280,10 @@ bool calculate_checksum(uint8_t *ipv4_header, uint32_t header_length) {
 	//set the header chksum to 0 for purposes of computing the checksum
 	hd->ip_chksum = 0;
 
-	uint16_t* headerPointer = (uint16_t*) ipv4_header;	// Cast the 8-bit pointor to a 16-bits pointer
-	uint32_t sum = 0;									// sum variable
-	uint16_t i = 0;										// counter variable
-	uint8_t carry = 0;									// carry variable
+	uint16_t* headerPointer = (uint16_t*) ipv4_header;  // Cast the 8-bit pointor to a 16-bits pointer
+	uint32_t sum = 0;                                   // sum variable
+	uint16_t i = 0;                                     // counter variable
+	uint8_t carry = 0;                                  // carry variable
 	
 	for ( i = 0; i < header_length/2; ++i) {
 		// get 16-bits 
