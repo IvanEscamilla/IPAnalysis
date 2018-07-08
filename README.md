@@ -1,6 +1,6 @@
 # IP Packet Analysis 
 
-program wirten in C (C99) to show the implementation of the following signature:
+program written in C (C99) to show the implementation of the following signature:
 
 `bool is_local_address(uint8_t *ipv4_header, uint32_t address, uint32_t subnet_mask);`
 
