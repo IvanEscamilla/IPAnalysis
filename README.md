@@ -18,14 +18,14 @@ The byte buffer 'ipv4_header' represents an Internet Protocol header as defined 
 * make sure you have **gcc** compiler and **GNU make** installed on your computer.
     
 **Installing compiler using apt command**
-```
+```sh
 $ sudo apt-get update
 $ sudo apt-get upgrade
 $ sudo apt-get install build-essential
 ```
 **Verify installation**
 
-```
+```sh
 $ whereis gcc make
 $ gcc --version
 $ make -v
